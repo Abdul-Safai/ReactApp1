@@ -1,38 +1,196 @@
+/* Main Container */
 .App {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.main-header {
+  background-color: #0778be; /* Vibrant Orange */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.main-header h1 {
+  font-size: 26px;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Form Section */
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 15px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+input, select, button {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input:focus, select:focus {
+  border-color: #00703c;
+  outline: none;
+}
+
+/* Buttons */
+button {
+  background-color: #00703c;
   color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #00592f;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Success Message */
+.success {
+  color: #0a7c33;
+  background-color: #d4edda;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #c3e6cb;
+}
+
+/* Reservation List */
+.reservation-section {
+  margin-top: 40px;
+}
+
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reservation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-left: 6px solid #00703c;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.reservation-card:hover {
+  transform: scale(1.01);
+}
+
+.reservation-details h3 {
+  margin: 0 0 6px 0;
+  font-size: 20px;
+  color: #00703c;
+}
+
+.reservation-details p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Action Buttons */
+.reservation-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background-color: #0077cc;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #005fa3;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Clear All */
+.clear-all-btn {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 12px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.clear-all-btn:hover {
+  background-color: #e74c3c;
+}
+
+.empty-message {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+/* Section Title Banners */
+.section-banner {
+  color: white;
+  padding: 15px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.green-banner {
+  background-color: #28a745;
+}
+
+.purple-banner {
+  background-color: #8a61d7;
 }
