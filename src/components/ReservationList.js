@@ -14,8 +14,11 @@ const areaOrder = [
 ];
 
 const ReservationList = ({ reservations, onDelete, onEdit }) => {
+  // Group reservations AND include original index
   const groupedReservations = areaOrder.reduce((acc, area) => {
-    acc[area] = reservations.filter(res => res.area === area);
+    acc[area] = reservations
+      .map((res, index) => ({ ...res, index }))
+      .filter(res => res.area === area);
     return acc;
   }, {});
 
@@ -28,7 +31,6 @@ const ReservationList = ({ reservations, onDelete, onEdit }) => {
         areaOrder.map(area => {
           const areaReservations = groupedReservations[area] || [];
 
-          // Calculate used and available slots
           const usedSlots = areaReservations.map(res => res.timeSlot);
           const availableSlots = timeSlots.filter(slot => !usedSlots.includes(slot));
           const slotsLeft = availableSlots.length;
@@ -51,29 +53,20 @@ const ReservationList = ({ reservations, onDelete, onEdit }) => {
                 <p className="empty-message">No reservations yet for this area.</p>
               ) : (
                 <div className="reservation-list">
-                  {areaReservations.map((res, index) => {
-                    const globalIndex = reservations.findIndex(r =>
-                      r.name === res.name &&
-                      r.email === res.email &&
-                      r.area === res.area &&
-                      r.timeSlot === res.timeSlot
-                    );
-
-                    return (
-                      <div key={globalIndex} className="reservation-card">
-                        <div className="reservation-details">
-                          <h3>{res.name}</h3>
-                          <p><strong>Email:</strong> {res.email}</p>
-                          <p><strong>Area:</strong> {res.area}</p>
-                          <p><strong>Time Slot:</strong> {res.timeSlot}</p>
-                        </div>
-                        <div className="reservation-actions">
-                          <button className="edit-btn" onClick={() => onEdit(globalIndex)}>Edit</button>
-                          <button className="delete-btn" onClick={() => onDelete(globalIndex)}>Delete</button>
-                        </div>
+                  {areaReservations.map((res) => (
+                    <div key={res.index} className="reservation-card">
+                      <div className="reservation-details">
+                        <h3>{res.name}</h3>
+                        <p><strong>Email:</strong> {res.email}</p>
+                        <p><strong>Area:</strong> {res.area}</p>
+                        <p><strong>Time Slot:</strong> {res.timeSlot}</p>
                       </div>
-                    );
-                  })}
+                      <div className="reservation-actions">
+                        <button className="edit-btn" onClick={() => onEdit(res.index)}>Edit</button>
+                        <button className="delete-btn" onClick={() => onDelete(res.index)}>Delete</button>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>

@@ -19,6 +19,12 @@ function App() {
     localStorage.setItem('reservations', JSON.stringify(reservations));
   }, [reservations]);
 
+  useEffect(() => {
+    if (editingIndex !== null) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [editingIndex]);
+
   const addReservation = (reservation) => {
     setReservations([...reservations, reservation]);
     setSuccessMessage('✅ Reservation successful!');
@@ -51,6 +57,10 @@ function App() {
     }
   };
 
+  const cancelEdit = () => {
+    setEditingIndex(null);
+  };
+
   return (
     <div className="App">
       <header className="main-header">
@@ -58,7 +68,10 @@ function App() {
       </header>
 
       <section className="form-section">
-        <div className="section-banner green-banner">📝 Make a Reservation</div>
+        <div className="section-banner green-banner">
+          {editingIndex !== null ? '✏️ Edit Reservation' : '📝 Make a Reservation'}
+        </div>
+
         <ReservationForm
           onAdd={addReservation}
           onUpdate={updateReservation}
@@ -66,6 +79,13 @@ function App() {
           editingIndex={editingIndex}
           editingData={editingIndex !== null ? reservations[editingIndex] : null}
         />
+
+        {editingIndex !== null && (
+          <button className="cancel-btn" onClick={cancelEdit}>
+            Cancel Edit
+          </button>
+        )}
+
         {successMessage && <p className="success">{successMessage}</p>}
       </section>
 
